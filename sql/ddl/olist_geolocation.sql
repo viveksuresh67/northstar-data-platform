@@ -1,0 +1,1 @@
+create or replace table olist_geolocation (geolocation_zip_code_prefix VARCHAR(255), geolocation_lat VARCHAR(255), geolocation_lng VARCHAR(255), geolocation_city VARCHAR(255), geolocation_state VARCHAR(255));

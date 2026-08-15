@@ -1,0 +1,1 @@
+create or replace table olist_order_reviews (review_id VARCHAR(255), order_id VARCHAR(255), review_score VARCHAR(255), review_comment_title VARCHAR(255), review_comment_message VARCHAR(255), review_creation_date DATE, review_answer_timestamp TIMESTAMP_NTZ);

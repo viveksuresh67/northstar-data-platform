@@ -1,0 +1,8 @@
+#python virtual environment
+.venv/
+
+#macOS system files
+.DS_Store
+
+#Local raw data
+data/raw/

@@ -1,0 +1,1 @@
+create or replace table olist_customers (customer_id VARCHAR(255), customer_unique_id VARCHAR(255), customer_zip_code_prefix VARCHAR(255), customer_city VARCHAR(255), customer_state VARCHAR(255));

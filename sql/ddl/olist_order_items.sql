@@ -1,0 +1,1 @@
+create or replace table olist_order_items (order_id VARCHAR(255), order_item_id VARCHAR(255), product_id VARCHAR(255), seller_id VARCHAR(255), shipping_limit_date DATE, price VARCHAR(255), freight_value VARCHAR(255));
