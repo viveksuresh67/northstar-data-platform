@@ -1,1 +1,1 @@
-create or replace table olist_order_payments (order_id VARCHAR(255), payment_sequential VARCHAR(255), payment_type VARCHAR(255), payment_installments VARCHAR(255), payment_value VARCHAR(255));
+create or replace table olist_order_payments (order_id VARCHAR(255), payment_sequential VARCHAR(255), payment_type VARCHAR(255), payment_installments VARCHAR(255), payment_value VARCHAR(255), _loaded_at TIMESTAMP_NTZ);
