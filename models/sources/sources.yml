@@ -1,0 +1,45 @@
+version: 2
+
+sources:
+  - name: olist
+    database: NORTHSTAR
+    schema: RAW
+    description: "Olist e-commerce raw data loaded into Snowflake"
+
+    config:
+      loaded_at_field: _loaded_at
+      freshness:
+        warn_after:
+          count: 5
+          period: day
+        error_after:
+          count: 8
+          period: day
+
+    tables:
+      - name: olist_customers
+        description: "Customer information from the Olist e-commerce dataset."
+
+      - name: olist_geolocation
+        description: "Geolocation data containing zip code prefixes, latitude, longitude, city, and state."
+
+      - name: olist_orders
+        description: "Order information for customers, including order status and order-related timestamps."
+
+      - name: olist_order_items
+        description: "Individual items included in customer orders, including products, sellers, prices, and freight values."
+
+      - name: olist_order_payments
+        description: "Payment information associated with customer orders."
+
+      - name: olist_order_reviews
+        description: "Customer reviews and review-related information associated with orders."
+
+      - name: olist_products
+        description: "Product information including category, dimensions, weight, and product attributes."
+
+      - name: olist_sellers
+        description: "Seller information including seller ID, location, and zip code."
+
+      - name: product_category_name_translation
+        description: "Translation of product category names from Portuguese to English."

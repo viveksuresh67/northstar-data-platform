@@ -52,8 +52,8 @@ def generate_sql_string(data_types):
         for col_name, dt in col_dict.items():
             sql += f"{col_name} {dt}, "
 
-        sql = sql.rstrip(", ")
-        sql += ");"
+       # sql = sql.rstrip(", ")
+        sql += "_loaded_at TIMESTAMP_NTZ);"
         ddl_statements[tab_name] = sql
     return ddl_statements
             

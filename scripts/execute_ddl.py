@@ -1,5 +1,8 @@
+from dotenv import load_dotenv
 import os
 import snowflake.connector
+
+load_dotenv()
 
 source_path = "/Users/viveksuresh/Library/Mobile Documents/com~apple~CloudDocs/Development/Projects/northstar-data-platform/sql/ddl"
 

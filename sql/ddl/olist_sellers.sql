@@ -1,1 +1,1 @@
-create or replace table olist_sellers (seller_id VARCHAR(255), seller_zip_code_prefix VARCHAR(255), seller_city VARCHAR(255), seller_state VARCHAR(255));
+create or replace table olist_sellers (seller_id VARCHAR(255), seller_zip_code_prefix VARCHAR(255), seller_city VARCHAR(255), seller_state VARCHAR(255), _loaded_at TIMESTAMP_NTZ);
