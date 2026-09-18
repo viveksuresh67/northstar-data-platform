@@ -39,4 +39,6 @@ models:
   northstar_data_platform:
     staging:
       +schema: STAGING
+    intermediate:
+      +schema: INTERMEDIATE
 
