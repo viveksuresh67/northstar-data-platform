@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Table that has order details"
+
+    columns:
+      - name: order_id
+        description: "Unique id that represents an order"
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "Id that represents a customer"
+        tests:
+          - not_null
+
+      - name: order_status
+        description: "Status of an order"
+        tests:
+          - not_null
+
+      - name: order_sla
+        description: "This field shows if an order has met the agreed service"
+        tests:
+          - not_null

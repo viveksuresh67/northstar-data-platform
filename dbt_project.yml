@@ -41,4 +41,6 @@ models:
       +schema: STAGING
     intermediate:
       +schema: INTERMEDIATE
-
+    marts:
+      +schema: MARTS
+      +materialized: table
