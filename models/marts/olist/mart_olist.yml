@@ -45,3 +45,13 @@ models:
         description: "Date when the customer made the last order"
         tests:
           - not_null
+
+  - name: dim_products
+    description: "Dimension table that shows product details and sales"
+
+    columns:
+      - name: product_id
+        description: "unique id that represents a product"
+        tests:
+          - unique
+          - not_null
