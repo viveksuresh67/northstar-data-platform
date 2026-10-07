@@ -2,97 +2,233 @@ version: 2
 
 models:
   - name: fct_orders
-    description: "Table that has order details"
+    description: "Order-level fact table containing order status, customer, payment, and SLA information."
 
     columns:
       - name: order_id
-        description: "Unique id that represents an order"
+        description: "Unique identifier representing an order."
         tests:
           - unique
           - not_null
 
       - name: customer_id
-        description: "Id that represents a customer"
+        description: "Identifier representing the customer who placed the order."
         tests:
           - not_null
 
       - name: order_status
-        description: "Status of an order"
+        description: "Current status of the order."
         tests:
           - not_null
+
+      - name: order_purchase_timestamp
+        description: "Timestamp when the order was placed."
+
+      - name: order_delivered_customer_date
+        description: "Date when the order was delivered to the customer."
+
+      - name: order_estimated_delivery_date
+        description: "Estimated date when the order was expected to be delivered."
 
       - name: order_sla
-        description: "This field shows if an order has met the agreed service"
+        description: "Indicates whether the order was delivered within the estimated delivery date."
         tests:
           - not_null
 
+      - name: total_payment_value
+        description: "Total payment amount associated with the order."
+
+      - name: payment_types
+        description: "Payment methods used for the order."
+
+
   - name: dim_customers
-    description: "Dimension table that has customer order details"
+    description: "Customer dimension containing customer-level order history and activity metrics."
 
     columns:
       - name: customer_unique_id
-        description: "Unique id that represents a customer"
+        description: "Unique identifier representing a customer across orders."
         tests:
           - unique
           - not_null
 
+      - name: order_count
+        description: "Number of distinct orders placed by the customer."
+
       - name: first_order_date
-        description: "Date when the customer made the first order"
+        description: "Date when the customer placed their first order."
         tests:
           - not_null
 
       - name: latest_order_date
-        description: "Date when the customer made the last order"
+        description: "Date when the customer placed their most recent order."
         tests:
           - not_null
 
+
   - name: dim_products
-    description: "Dimension table that shows product details and sales"
+    description: "Product dimension containing product attributes and aggregated sales metrics."
 
     columns:
       - name: product_id
-        description: "unique id that represents a product"
+        description: "Unique identifier representing a product."
         tests:
           - unique
           - not_null
 
+      - name: category_name
+        description: "English product category name."
+
+      - name: product_name_length
+        description: "Number of characters in the product name."
+
+      - name: product_description_length
+        description: "Number of characters in the product description."
+
+      - name: product_photos_qty
+        description: "Number of photos associated with the product."
+
+      - name: product_weight_g
+        description: "Product weight in grams."
+
+      - name: product_length_cm
+        description: "Product length in centimeters."
+
+      - name: product_height_cm
+        description: "Product height in centimeters."
+
+      - name: product_width_cm
+        description: "Product width in centimeters."
+
+      - name: order_count
+        description: "Number of distinct orders containing the product."
+
+      - name: total_items_sales
+        description: "Total product sales amount excluding freight."
+
+      - name: total_freight_amount
+        description: "Total freight amount associated with the product."
+
+      - name: total_amount_charged
+        description: "Total product sales amount including freight."
+
+
   - name: dim_dates
-    description: "Table with calendar dates and details"
+    description: "Calendar dimension containing date attributes used for time-based analysis."
 
     columns:
       - name: calendar_date
-        description: "Shows the actual calendar date"
-
+        description: "Calendar date used as the primary date key."
         tests:
           - unique
           - not_null
 
+      - name: year
+        description: "Calendar year."
+
+      - name: quarter
+        description: "Calendar quarter."
+
+      - name: month
+        description: "Calendar month number."
+
+      - name: month_name
+        description: "Calendar month name."
+
+      - name: week
+        description: "Calendar week number."
+
+      - name: day_of_month
+        description: "Day of the month."
+
+      - name: day_of_week
+        description: "Day of the week number."
+
+      - name: day_name
+        description: "Day of the week name."
+
+      - name: is_weekend
+        description: "Indicates whether the date falls on a Saturday or Sunday."
+
+
   - name: dim_sellers
-    description: "Sellers information with aggregated order details"
+    description: "Seller dimension containing seller attributes and aggregated sales performance."
 
     columns:
       - name: seller_id
-        description: "unique id to identify the seller"
-
+        description: "Unique identifier representing a seller."
         tests:
           - unique
           - not_null
 
+      - name: seller_zip_code_prefix
+        description: "Postal code prefix associated with the seller."
+
+      - name: seller_city
+        description: "City where the seller is located."
+
+      - name: seller_state
+        description: "State where the seller is located."
+
+      - name: order_count
+        description: "Number of distinct orders associated with the seller."
+
+      - name: total_items_sales
+        description: "Total product sales amount generated by the seller, excluding freight."
+
+      - name: total_freight_amount
+        description: "Total freight amount associated with the seller's orders."
+
+      - name: total_amount_charged
+        description: "Total product sales and freight amount associated with the seller."
+
+
   - name: fct_sales
-    description: Order-item level sales fact table.
+    description: "Order-item level sales fact table containing product sales, freight, customer, and seller information."
+
     columns:
       - name: order_id
+        description: "Identifier of the order associated with the sales transaction."
         tests:
           - not_null
 
       - name: order_item_id
+        description: "Item sequence number within an order."
         tests:
           - not_null
 
+      - name: customer_id
+        description: "Identifier of the customer who placed the order."
+        tests:
+          - not_null
+
+      - name: customer_unique_id
+        description: "Unique identifier representing the customer across orders."
+
       - name: product_id
+        description: "Identifier of the product sold."
         tests:
           - not_null
 
       - name: seller_id
+        description: "Identifier of the seller responsible for the item."
         tests:
           - not_null
+
+      - name: order_purchase_date
+        description: "Calendar date on which the order was placed."
+
+      - name: order_status
+        description: "Current status of the order."
+
+      - name: shipping_limit_date
+        description: "Date by which the seller was expected to ship the order item."
+
+      - name: item_price
+        description: "Price of the product item excluding freight."
+
+      - name: freight_amt
+        description: "Freight amount charged for the order item."
+
+      - name: total_item_amount
+        description: "Total amount for the order item including product price and freight."
