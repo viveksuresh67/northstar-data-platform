@@ -77,3 +77,22 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: fct_sales
+    description: Order-item level sales fact table.
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+
+      - name: order_item_id
+        tests:
+          - not_null
+
+      - name: product_id
+        tests:
+          - not_null
+
+      - name: seller_id
+        tests:
+          - not_null
