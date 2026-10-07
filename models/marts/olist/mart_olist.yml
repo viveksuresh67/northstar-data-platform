@@ -55,3 +55,14 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: dim_dates
+    description: "table with calendar dates and details"
+
+    columns:
+      - name: calendar_date
+        description: "Shows the actual calendar date"
+
+        tests:
+          - unique
+          - not_null
